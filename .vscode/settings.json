@@ -1,0 +1,7 @@
+{
+	"files.associations": {
+		"two_d_arrays.h": "c",
+		"bsq_solver.h": "c",
+		"header_parser.h": "c"
+	}
+}
