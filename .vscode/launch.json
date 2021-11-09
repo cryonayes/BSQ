@@ -10,6 +10,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "${fileDirname}/${fileBasenameNoExtension}",
+			//"args": ["grid.txt", "grid1.txt", "grid2.txt"],
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",

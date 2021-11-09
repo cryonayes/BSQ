@@ -6,19 +6,16 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:15:39 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 22:27:30 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/09 23:47:13 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "bsq/header_parser.h"
 #include "bsq/bsq_solver.h"
 #include "print_utils.h"
-#include "str_utils.h"
 #include "two_d_arrays.h"
 #include "math_utils.h"
-#include "unistd.h"
 #include "stdlib.h"
-#include "stdio.h"
 
 char	**transform_map(char **map, int size, t_header header)
 {
@@ -102,7 +99,7 @@ void	solve_bsq(int *fd)
 	t_bsq_info			info;
 
 	map_header = parse_header(fd);
-	map_o = two_d_array_from_file(fd, map_header.map_size);
+	map_o = two_d_array_from_fd(fd, map_header.map_size);
 	map_t = transform_map(map_o, map_header.map_size, map_header);
 	info = calculate_bsq(map_t, map_header.map_size);
 	get_bsq_result(map_o, info, map_header);

@@ -6,13 +6,14 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:16:01 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 21:16:02 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/10 00:22:19 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "unistd.h"
+#include "print_utils.h"
 
 char	**two_d_array(char fill, int row, int col)
 {
@@ -60,13 +61,22 @@ char	**two_d_array_from_str(char *str, int row_col_number)
 	return (arr);
 }
 
-char	**two_d_array_from_file(int *fd, int size)
+char	**two_d_array_from_fd(int *fd, int size)
 {
 	char	**map;
 	char	*buffer;
+	char	*buffer_addr;
+	int		line_count;
 
+	line_count = 0;
 	buffer = malloc(sizeof (char) * size * size + size);
-	read(*fd, buffer, size * size + size);
+	buffer_addr = buffer;
+	while (line_count < size)
+	{
+		read(*fd, buffer_addr, size + 1);
+		buffer_addr += size + 1;
+		line_count++;
+	}
 	map = two_d_array_from_str(buffer, size + 1);
 	free(buffer);
 	return (map);
