@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:16:58 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 21:57:18 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/09 22:24:54 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ struct s_bsq_info
 typedef struct s_bsq_info	t_bsq_info;
 char		**transform_map(char **map, int size, t_header header);
 t_bsq_info	calculate_bsq(char **map, int map_size);
-void		get_bsq_result(char **map_t, char **map_o, int map_size, int max);
+void		get_bsq_result(char **map_o, t_bsq_info map_info, t_header header);
 void		solve_bsq(int *fd);
 
 #endif

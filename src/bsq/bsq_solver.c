@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:15:39 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 22:17:29 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/09 22:27:30 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,32 +75,22 @@ t_bsq_info	calculate_bsq(char **map, int map_size)
 	return (info);
 }
 
-void	get_bsq_result(char **map_t, char **map_o, int map_size, int max)
+void	get_bsq_result(char **map_o, t_bsq_info map_info, t_header header)
 {
-	int	i;
-	int	j;
-	int	i_max;
-	int	j_max;
+	int	i_counter;
+	int	j_counter;
 
-	i = -1;
-	while (++i < map_size)
+	i_counter = map_info.i;
+	j_counter = map_info.j;
+	while (i_counter > map_info.i - map_info.max_possible)
 	{
-		j = -1;
-		while (++j < map_size)
+		j_counter = map_info.j;
+		while (j_counter > map_info.j - map_info.max_possible)
 		{
-			if (map_t[i][j] == max)
-			{
-				i_max = i - 1;
-				j_max = j;
-				while (--i > i_max - max)
-				{
-					j = j_max;
-					while (j > j_max - max)
-						map_o[i + 1][j--] = 'x';
-				}
-				return ;
-			}
+			map_o[i_counter][j_counter] = header.fill_char;
+			j_counter--;
 		}
+		i_counter--;
 	}
 }
 
@@ -115,7 +105,7 @@ void	solve_bsq(int *fd)
 	map_o = two_d_array_from_file(fd, map_header.map_size);
 	map_t = transform_map(map_o, map_header.map_size, map_header);
 	info = calculate_bsq(map_t, map_header.map_size);
-	get_bsq_result(map_t, map_o, map_header.map_size, info.max_possible);
+	get_bsq_result(map_o, info, map_header);
 	io_print_2d_array(map_o, map_header.map_size);
 	free(map_t);
 	free(map_o);
