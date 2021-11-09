@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:15:39 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 21:58:58 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/09 22:17:29 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_bsq_info	calculate_bsq(char **map, int map_size)
 	while (++i < map_size)
 	{
 		j = 0;
-		while (j++ < map_size)
+		while (++j < map_size)
 		{
 			if (map[i][j] == 0)
 				continue ;
