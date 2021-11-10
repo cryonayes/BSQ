@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:17:01 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 21:50:07 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/10 18:14:40 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ struct s_header
 };
 
 typedef struct s_header	t_header;
+
 t_header	parse_header(int *fd);
 
 #endif

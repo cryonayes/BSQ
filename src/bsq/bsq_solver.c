@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:15:39 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 23:47:13 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/10 18:08:54 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,34 @@
 #include "two_d_arrays.h"
 #include "math_utils.h"
 #include "stdlib.h"
+#include "unistd.h"
+
+void	validate_map(t_header map_h, char **map_o)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < map_h.map_size)
+	{
+		if (map_o[i][map_h.map_size] != '\n')
+		{
+			write(2, "map error\n", 10);
+			exit(-1);
+		}
+		j = -1;
+		while (++j < map_h.map_size)
+		{
+			if (!(map_o[i][j] == map_h.empty_char
+				|| map_o[i][j] == map_h.fill_char
+				|| map_o[i][j] == map_h.obstacle_char))
+			{
+				write(2, "map error\n", 10);
+				exit(-1);
+			}
+		}
+	}
+}
 
 char	**transform_map(char **map, int size, t_header header)
 {
@@ -28,7 +56,7 @@ char	**transform_map(char **map, int size, t_header header)
 	while (++i < size)
 	{
 		j = -1;
-		while (j++ < size)
+		while (++j < size)
 		{
 			if ((i == 0 || j == 0) && map[i][j] == header.empty_char)
 			{
@@ -100,6 +128,7 @@ void	solve_bsq(int *fd)
 
 	map_header = parse_header(fd);
 	map_o = two_d_array_from_fd(fd, map_header.map_size);
+	validate_map(map_header, map_o);
 	map_t = transform_map(map_o, map_header.map_size, map_header);
 	info = calculate_bsq(map_t, map_header.map_size);
 	get_bsq_result(map_o, info, map_header);

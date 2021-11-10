@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:15:52 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/09 21:19:24 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/11/10 18:16:18 by cryonayes        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ struct s_header	parse_header(int *fd)
 		counter++;
 	}
 	header.map_size = str_to_int(buffer);
+	if (header.map_size < 0)
+	{
+		write(2, "map error\n", 10);
+		exit(-1);
+	}
 	header.fill_char = buffer[counter - 1];
 	header.obstacle_char = buffer[counter - 2];
 	header.empty_char = buffer[counter - 3];
