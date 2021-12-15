@@ -32,7 +32,7 @@ struct s_header	parse_header(int *fd)
 		counter++;
 	}
 	header.map_size = str_to_int(buffer);
-	if (header.map_size < 0)
+	if (header.map_size <= 0)
 	{
 		write(2, "map error\n", 10);
 		exit(-1);
