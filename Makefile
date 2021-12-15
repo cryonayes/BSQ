@@ -1,7 +1,7 @@
-NAME = main
+NAME = bsq
 CC = gcc
 CCFLAGS = -Wall -Werror -Wextra -g
-SRCS = main.c src/math_utils.c src/print_utils.c src/str_utils.c src/two_d_arrays.c src/bsq/bsq_solver.c src/bsq/header_parser.c
+SRCS = bsq.c src/math_utils.c src/print_utils.c src/str_utils.c src/two_d_arrays.c src/bsq/bsq_solver.c src/bsq/header_parser.c
 OBJS = ${SRCS:.c=.o}
 
 all: ${NAME}
@@ -15,6 +15,9 @@ ${NAME}: ${OBJS}
 clean:
 	rm -f grid.txt grid1.txt grid2.txt ${NAME}
 	rm -f -r ${OBJS}
+
+fclean: clean
+	rm -f ${NAME}
 
 grid:
 	perl tools/generate_grid.pl 15 15 3 > grid.txt

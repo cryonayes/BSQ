@@ -78,17 +78,17 @@ t_bsq_info	calculate_bsq(char **map, int map_size)
 	int			j;
 
 	info.max_possible = 0;
-	i = 0;
+	i = -1;
 	while (++i < map_size)
 	{
-		j = 0;
+		j = -1;
 		while (++j < map_size)
 		{
 			if (map[i][j] == 0)
 				continue ;
-			map[i][j] = min_of_three(map[i - 1][j - 1], map[i - 1][j],
-					map[i][j - 1]
-					) + 1;
+			if (i != 0 && j != 0)
+				map[i][j] = min_of_three(map[i - 1][j - 1], map[i - 1][j],
+						map[i][j - 1]) + 1;
 			if (map[i][j] > info.max_possible)
 			{
 				info.i = i;
