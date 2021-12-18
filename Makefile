@@ -1,6 +1,6 @@
 NAME = bsq
 CC = gcc
-CCFLAGS = -Wall -Werror -Wextra -g
+CCFLAGS = -Wall -Werror -Wextra
 SRCS = bsq.c src/math_utils.c src/print_utils.c src/str_utils.c src/two_d_arrays.c src/bsq/bsq_solver.c src/bsq/header_parser.c
 OBJS = ${SRCS:.c=.o}
 

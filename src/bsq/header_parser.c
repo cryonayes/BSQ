@@ -31,15 +31,16 @@ struct s_header	parse_header(int *fd)
 			break ;
 		counter++;
 	}
+	header.fill_char = buffer[counter - 1];
+	header.obstacle_char = buffer[counter - 2];
+	header.empty_char = buffer[counter - 3];
+	buffer[counter - 3] = '\0';
 	header.map_size = str_to_int(buffer);
 	if (header.map_size <= 0)
 	{
 		write(2, "map error\n", 10);
 		exit(-1);
 	}
-	header.fill_char = buffer[counter - 1];
-	header.obstacle_char = buffer[counter - 2];
-	header.empty_char = buffer[counter - 3];
 	free(buffer);
 	return (header);
 }
