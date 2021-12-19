@@ -6,7 +6,7 @@
 /*   By: cryonayes <cryonayes@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/09 21:15:39 by cryonayes         #+#    #+#             */
-/*   Updated: 2021/11/10 18:08:54 by cryonayes        ###   ########.fr       */
+/*   Updated: 2021/12/19 23:08:15 by aeser            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	validate_map(t_header map_h, char **map_o)
 		while (++j < map_h.map_size)
 		{
 			if (!(map_o[i][j] == map_h.empty_char
-				|| map_o[i][j] == map_h.fill_char
-				|| map_o[i][j] == map_h.obstacle_char))
+				|| map_o[i][j] == map_h.obstacle_char)
+				|| map_o[i][j] == map_h.fill_char)
 			{
 				write(2, "map error\n", 10);
 				exit(-1);
